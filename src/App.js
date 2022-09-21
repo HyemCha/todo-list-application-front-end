@@ -23,8 +23,21 @@ function App(){
       );
 
   useEffect(()=>{
-    console.log()
-  },[items])
+    const requestOptions = {
+      method:"get",
+      headers:{"Content-Type" : "application/json"},
+    };
+    fetch("http://localhost:9000/todo", requestOptions)
+    .then((response) => response.json())
+    .then(
+      (res) => {
+        setItems(res.data);
+      },
+      (err) => {
+        setItems(err);
+      }
+    )
+  },[])
   
   //추가
   const add = item =>{
