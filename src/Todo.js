@@ -17,15 +17,18 @@ function Todo (props){
     const enterKeyEventHandler = e => {
         if (e.key == "Enter"){
             setReadOnly(true);
+            props.update(item);
         }
     }
 
     const checkboxEventHandler = e => {
-        setItem({...item, done:!item.done})
+        const updateItem = {...item, done:!item.done}
+        setItem({...item, done : !item.done})
+        props.update(updateItem);
+        console.log("update after checkbox clicked", e.target.checked,item)
     }
 
     const editEventHandler = e => {
-        console.log("title",item.title)
         setItem({...item, title : e.target.value});
     }
 
