@@ -5,52 +5,36 @@ import { List, Paper } from '@material-ui/core';
 import AddTodo from './AddTodo';
 import { call } from './service/ApiService';
 
-const TodoItems = ({items, deleteItem, update}) => {
-  return<Paper style={{margin: 16}}>
+const TodoItems = ({ items, deleteItem, update }) => {
+  return <Paper style={{ margin: 16 }}>
     <List>
-      {items.map((item, idx) => 
-        <Todo 
-        item={item} 
-        key={item.id} 
-        deleteItem={deleteItem}
-        update={update}
+      {items.map((item, idx) =>
+        <Todo
+          item={item}
+          key={item.id}
+          deleteItem={deleteItem}
+          update={update}
         />
       )}
     </List>
   </Paper>
-  
+
 };
 
-function App(){
+function App() {
   const [items, setItems] = useState([]);
 
-  useEffect(()=>{
-    // const requestOptions = {
-    //   method:"get",
-    //   headers:{"Content-Type" : "application/json"},
-    // };
-    // fetch("http://localhost:9000/todo", requestOptions)
-    // .then((response) => response.json())
-    // .then(
-    //   (res) => {
-    //     setItems(res.data);
-    //   },
-    //   (err) => {
-    //     setItems(err);
-    //   }
-    // )
-
+  useEffect(() => {
     call("/todo", "GET", null)
-    .then(res=>{
-      setItems(res.data);
-    })
+      .then(res => {
+        setItems(res.data);
+      })
+  }, [])
 
-  },[])
-  
   //추가
-  const add = item =>{
+  const add = item => {
     call("/todo", "POST", item)
-      .then(res=>{
+      .then(res => {
         setItems(res.data);
       });
   }
@@ -70,13 +54,21 @@ function App(){
   }
 
   return <div className="App">
-    <AddTodo add={add}/>
+    <AddTodo add={add} />
     <div className='TodoList'>
-      {items.length>0&&
-        <TodoItems 
-        items={items}  
-        deleteItem={deleteItem}
-        update={update}/>}
+      {items.length > 0 &&
+        <Paper style={{ margin: 16 }}>
+          <List>
+            {items.map((item, idx) =>
+              <Todo
+                item={item}
+                key={item.id}
+                deleteItem={deleteItem}
+                update={update}
+              />
+            )}
+          </List>
+        </Paper>}
     </div>
   </div>
 }
