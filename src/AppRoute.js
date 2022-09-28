@@ -1,11 +1,12 @@
 import { Box, Typography } from '@material-ui/core';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import App from './App';
 import Login from './Login';
+import SignUp from './SignUp';
 
-function Copyright(){
-    return<Typography variant='body2' color='textSecondary' align='center'>
+function Copyright() {
+    return <Typography variant='body2' color='textSecondary' align='center'>
         {"Copyright ©️ "}
         fsoftwareengineer, {new Date().getFullYear()}
         {"."}
@@ -14,17 +15,17 @@ function Copyright(){
 const AppRoute = () => {
     return (
         <div>
-            <Router>
-                <div>
-                    <Routes>
-                        <Route path='/login' element={<Login/>}/>
-                        <Route path='/' element={<App/>} />
-                    </Routes>
-                </div>
-                <Box mt={5}>
-                    <Copyright />
-                </Box>
-            </Router>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<App />} />
+                    <Route path='login' element={<Login />} />
+                    <Route path='signup' element={<SignUp />} />
+                </Routes>
+            </BrowserRouter>
+            <div className="paddingDiv" style={{marginTop:"20px"}}/>
+            <Box mt={5}>
+                <Copyright />
+            </Box>
         </div>
     );
 };

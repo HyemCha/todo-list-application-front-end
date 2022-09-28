@@ -1,5 +1,6 @@
 import { Button, Container, Grid, TextField, Typography } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { signin } from './service/ApiService';
 
 const Login = () => {
@@ -16,7 +17,7 @@ const Login = () => {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Typography component="h1" variant="h5">
-                        로그인
+                        🚪로그인
                     </Typography>
                 </Grid>
             </Grid>
@@ -30,7 +31,7 @@ const Login = () => {
                             required
                             fullWidth
                             id='email'
-                            label='이메일 주소'
+                            label='🧙‍♂️이메일 주소'
                             name='email'
                             autoComplete='email'
                         />
@@ -41,7 +42,7 @@ const Login = () => {
                         required
                         fullWidth
                         id='password'
-                        label='패스워드'
+                        label='🪡패스워드'
                         name='password'
                         type='password'
                         autoComplete='current-password'
@@ -57,6 +58,9 @@ const Login = () => {
                             로그인
                         </Button>
                     </Grid>
+                    <Link to="/signup" variant="body2">
+                        <Grid item>계정이 없습니까? 여기서 가입 하세요.</Grid>
+                    </Link>
                 </Grid>
             </form>
         </Container>
